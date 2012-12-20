@@ -42,8 +42,8 @@ namespace KMSDirectory.iOS {
 	[Register("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate {
 		
-		//static readonly Uri RssFeedUrl = new Uri("http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml");
-		static readonly Uri RssFeedUrl = new Uri("http://directory.kms-technology.com/RestServiceImpl.svc/json/456");
+		static readonly Uri RssFeedUrl = new Uri("http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml");
+		//static readonly Uri RssFeedUrl = new Uri("http://192.168.30.72/RestServiceImpl.svc/json/456");
 		
 		UINavigationController NavigationController { get; set; }
 		
