@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMSDirectory.iOS", "KMSDirectory.iOS\KMSDirectory.iOS.csproj", "{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMSDirectory.Share", "KMSDirectory.Share\KMSDirectory.Share.csproj", "{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KMSDirectory.Android", "KMSDirectory.Android\KMSDirectory.Android.csproj", "{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Release|iPhone.Build.0 = Release|iPhone
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4D3A8E8A-53D4-4CF5-97D6-9E6199DDB582}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhone.Build.0 = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BB3E2E74-C763-4CE8-A2E0-757BC0BE12EA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Release|iPhone.Build.0 = Release|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CD55C6FF-9A6A-4D5C-A053-29EB23E99DF0}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = KMSDirectory.Android\KMSDirectory.Android.csproj
+	EndGlobalSection
+EndGlobal
