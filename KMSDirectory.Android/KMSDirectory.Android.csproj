@@ -48,6 +48,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>JSON\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HomeScreen.cs" />
@@ -55,9 +58,15 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableItem.cs" />
+    <Compile Include="DetailScreen.cs" />
+    <Compile Include="Employee.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Drawable\Icon.png" />
+    <AndroidResource Include="Resources\Layout\DetailScreen.axml" />
+    <AndroidResource Include="Resources\Drawable\btn_call.png" />
+    <AndroidResource Include="Resources\Drawable\btn_chat.png" />
+    <AndroidResource Include="Resources\Drawable\btn_mail.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\HomeScreen.axml">

@@ -9,12 +9,13 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Graphics;
 
 namespace CustomRowView {
-public class HomeScreenAdapter : BaseAdapter<TableItem> {
-    List<TableItem> items;
+public class HomeScreenAdapter : BaseAdapter<Employee> {
+    List<Employee> items;
     Activity context;
-    public HomeScreenAdapter(Activity context, List<TableItem> items)
+    public HomeScreenAdapter(Activity context, List<Employee> items)
         : base()
     {
         this.context = context;
@@ -24,7 +25,7 @@ public class HomeScreenAdapter : BaseAdapter<TableItem> {
     {
         return position;
     }
-    public override TableItem this[int position]
+    public override Employee this[int position]
     {
         get { return items[position]; }
     }
@@ -39,11 +40,24 @@ public class HomeScreenAdapter : BaseAdapter<TableItem> {
         View view = convertView;
         if (view == null) // no view to re-use, create new
             view = context.LayoutInflater.Inflate(Resource.Layout.CustomView, null);
-        view.FindViewById<TextView>(Resource.Id.Text1).Text = item.Heading;
-        view.FindViewById<TextView>(Resource.Id.Text2).Text = item.SubHeading;
-        view.FindViewById<ImageView>(Resource.Id.Image).SetImageResource(item.ImageResourceId);
+        view.FindViewById<TextView>(Resource.Id.Text1).Text = item.firstName + " " + item.lastName;
+        view.FindViewById<TextView>(Resource.Id.Text2).Text = item.title;
+        //view.FindViewById<ImageView>(Resource.Id.Image).SetImageResource(item.id);
+		view.FindViewById<ImageView>(Resource.Id.Image).SetImageBitmap(GetAvatar(item));
 
         return view;
     }
+
+		Bitmap GetAvatar (Employee employee)
+		{
+			// Default avatar
+			if (employee.avatarImage == null || employee.avatarImage == "")
+				return null;
+			
+			// Special avatar
+			byte[] byteImg = System.Convert.FromBase64String (employee.avatarImage);
+			Bitmap b = BitmapFactory.DecodeByteArray(byteImg, 0, byteImg.Length);
+			return b;
+		}
 }
 }
