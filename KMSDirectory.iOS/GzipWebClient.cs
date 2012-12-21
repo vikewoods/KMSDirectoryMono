@@ -9,8 +9,13 @@ namespace KMSDirectory.iOS
 		{
 			var request = base.GetWebRequest(address);
 
-			if(request is HttpWebRequest)
-				((HttpWebRequest) request).AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+			if (request is HttpWebRequest) {
+				((HttpWebRequest)request).AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+
+				// json request
+				request.ContentType = @"application/json";
+				request.Method = @"GET";
+			}
 
 			return request;
 		}

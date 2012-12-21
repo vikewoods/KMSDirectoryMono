@@ -35,14 +35,14 @@ using System.Net;
 using System.Threading;
 
 namespace KMSDirectory.iOS {
-
 	public partial class EmployeeMngrView : UITableViewController {
-		
-		public ObservableCollection<App> Apps { get; private set; }
+		//public ObservableCollection<App> m_Apps { get; private set; }
+		public ObservableCollection<Employee> m_arrEmployee { get; private set; }
 		
 		public EmployeeMngrView(string nibName, NSBundle bundle) : base(nibName, bundle)
 		{
-			Apps = new ObservableCollection<App>();
+			m_arrEmployee = new ObservableCollection<Employee>();
+
 			Title = NSBundle.MainBundle.LocalizedString("Employees", "Master");
 		}
 		
@@ -62,26 +62,27 @@ namespace KMSDirectory.iOS {
 		{
 			// Release all cached images. This will cause them to be redownloaded
 			// later as they're displayed.
-			foreach(var v in Apps)
-				v.Image = null;
+			foreach(var employee in m_arrEmployee)
+				employee.avatarImage = null;
 		}
 		
 		class DataSource : UITableViewSource {
-			
-			EmployeeMngrView Controller { get; set; }
-			Task DownloadTask { get; set; }
-			UIImage PlaceholderImage { get; set; }
+			EmployeeMngrView m_Controller { get; set; }
+			Task m_DownloadTask { get; set; }
+			UIImage m_PlaceholderImage { get; set; }
 
 			public DataSource(EmployeeMngrView controller)
 			{
-				Controller = controller;
+				m_Controller = controller;
 				
 				// Listen for changes to the Apps collection so the TableView can be updated
-				Controller.Apps.CollectionChanged += HandleAppsCollectionChanged;
+				m_Controller.m_arrEmployee.CollectionChanged += HandleAppsCollectionChanged;
+
 				// Initialise DownloadTask with an empty and complete task
-				DownloadTask = Task.Factory.StartNew(() => { });
+				m_DownloadTask = Task.Factory.StartNew(() => { });
+
 				// Load the Placeholder image so it's ready to be used immediately
-				PlaceholderImage = UIImage.FromFile("Images/Placeholder.png");
+				m_PlaceholderImage = UIImage.FromFile("Images/Placeholder.png");
 				
 				// If either a download fails or the image we download is corrupt, ignore the problem.
 				TaskScheduler.UnobservedTaskException += delegate(object sender, UnobservedTaskExceptionEventArgs e) {
@@ -92,7 +93,7 @@ namespace KMSDirectory.iOS {
 			void HandleAppsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 			{
 				// Whenever the Items change, reload the data.
-				Controller.TableView.ReloadData();
+				m_Controller.TableView.ReloadData();
 			}
 			
 			public override int NumberOfSections(UITableView tableView)
@@ -102,20 +103,21 @@ namespace KMSDirectory.iOS {
 			
 			public override int RowsInSection(UITableView tableview, int section)
 			{
-				return Controller.Apps.Count;
+				//return Controller.m_Apps.Count;
+				return m_Controller.m_arrEmployee.Count;
 			}
 			
 			// Customize the appearance of table view cells.
-			public override UITableViewCell GetCell(UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			public override UITableViewCell GetCell (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
 			{
 				UITableViewCell cell;
 
 				// If the list is empty, put in a 'loading' entry
-				if(Controller.Apps.Count == 0 && indexPath.Row == 0) {
-					cell = tableView.DequeueReusableCell("Placeholder");
+				if (m_Controller.m_arrEmployee.Count == 0 && indexPath.Row == 0) {
+					cell = tableView.DequeueReusableCell ("Placeholder");
 
-					if(cell == null) {
-						cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "Placeholder");
+					if (cell == null) {
+						cell = new UITableViewCell (UITableViewCellStyle.Subtitle, "Placeholder");
 						cell.DetailTextLabel.TextAlignment = UITextAlignment.Center;
 						cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 						cell.DetailTextLabel.Text = "Loading";
@@ -124,34 +126,55 @@ namespace KMSDirectory.iOS {
 					return cell;
 				}
 				
-				cell = tableView.DequeueReusableCell("Cell");
-				if(cell == null) {
-					cell = new UITableViewCell(UITableViewCellStyle.Subtitle, "Cell");
+				cell = tableView.DequeueReusableCell ("Cell");
+				if (cell == null) {
+					cell = new UITableViewCell (UITableViewCellStyle.Subtitle, "Cell");
 					cell.SelectionStyle = UITableViewCellSelectionStyle.None;
 				}
 				
 				// Set the tag of each cell to the index of the App that
 				// it's displaying. This allows us to directly match a cell
 				// with an item when we're updating the Image
-				var app = Controller.Apps [indexPath.Row];
+				//var app = Controller.m_Apps [indexPath.Row];
+				var employee = m_Controller.m_arrEmployee [indexPath.Row];
 				cell.Tag = indexPath.Row;
-				cell.TextLabel.Text = app.Name;
-				cell.DetailTextLabel.Text = app.Artist;
-				
+				cell.TextLabel.Text = MakeEmployeeName (employee);
+				cell.DetailTextLabel.Text = employee.title;
+
 				// If the Image for this App has not been downloaded,
 				// use the Placeholder image while we try to download
 				// the real image from the web.
-				if(app.Image == null) {
-					app.Image = PlaceholderImage;
-					BeginDownloadingImage(app, indexPath);
-				}
+				//if (employee.avatarImage == null) {
+				//	employee.avatarImage = m_PlaceholderImage;
+				//	BeginDownloadingImage (employee, indexPath);
+				//} else {
+				cell.ImageView.Image = GetAvatar(employee);//employee.avatarImage;
+				//}
 
-				cell.ImageView.Image = app.Image;
 				return cell;
 			}
-			
+
+			UIImage GetAvatar (Employee employee)
+			{
+				// Default avatar
+				if (employee.avatarImage == null || employee.avatarImage == "")
+					return m_PlaceholderImage;
+
+				// Special avatar
+				byte[] byteImg = System.Convert.FromBase64String (employee.avatarImage);
+				NSData data = NSData.FromArray(byteImg);
+
+				return UIImage.LoadFromData (data);
+			}
+
+			string MakeEmployeeName (Employee employee)
+			{
+				return employee.firstName + " " + employee.lastName;
+			}
+
 			void BeginDownloadingImage(App app, NSIndexPath path)
 			{
+				/*
 				// Queue the image to be downloaded. This task will execute
 				// as soon as the existing ones have finished.
 				byte[] data = null;
@@ -175,10 +198,11 @@ namespace KMSDirectory.iOS {
 					
 					// Retrieve the cell which corresponds to the current App. If the cell is null, it means the user
 					// has already scrolled that app off-screen.
-					var cell = Controller.TableView.VisibleCells.Where(c => c.Tag == Controller.Apps.IndexOf(app)).FirstOrDefault();
+					var cell = Controller.TableView.VisibleCells.Where(c => c.Tag == Controller.m_Apps.IndexOf(app)).FirstOrDefault();
 					if(cell != null)
 						cell.ImageView.Image = app.Image;
 				}, CancellationToken.None, TaskContinuationOptions.OnlyOnRanToCompletion, TaskScheduler.FromCurrentSynchronizationContext());
+				/**/
 			}
 		}
 	}

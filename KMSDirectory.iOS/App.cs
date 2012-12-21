@@ -28,9 +28,7 @@ using System;
 using MonoTouch.UIKit;
 
 namespace KMSDirectory.iOS {
-
 	public class App {
-		
 		public string Artist { get; set; }
 		
 		public UIImage Image { get; set; }
