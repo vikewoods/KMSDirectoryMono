@@ -72,22 +72,30 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="RootViewController.designer.cs">
-      <DependentUpon>EmployeeMngrView.cs</DependentUpon>
+      <DependentUpon>EmployeeTableViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="App.cs" />
     <Compile Include="RssParser.cs" />
     <Compile Include="GzipWebClient.cs" />
-    <Compile Include="EmployeeMngrView.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeTableViewController.cs" />
+    <Compile Include="EmployeeTableViewCell.cs" />
+    <Compile Include="EmployeeTableViewCell.designer.cs">
+      <DependentUpon>EmployeeTableViewCell.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="EmployeeMngrView.xib" />
+    <InterfaceDefinition Include="EmployeeTableViewController.xib" />
+    <InterfaceDefinition Include="EmployeeTableViewCell.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\Placeholder.png" />
+    <Content Include="Images\dafault_avatar.png" />
+    <Content Include="Images\btn_call.png" />
+    <Content Include="Images\btn_chat.png" />
+    <Content Include="Images\btn_mail.png" />
   </ItemGroup>
 </Project>
