@@ -45,10 +45,10 @@ namespace KMSDirectory.iOS
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		static readonly Uri m_RssFeedUrl = new Uri("http://phobos.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/toppaidapplications/limit=75/xml");
-		static readonly string m_szRequestUrl = @"http://192.168.30.72/RestServiceImpl.svc/json/456";
+		static readonly string m_szRequestUrl = @"http://directory.kms-technology.com/RestServiceImpl.svc/json/456";
 		
 		UINavigationController m_NavigationController { get; set; }
-		EmployeeMngrView m_RootController { get; set; }
+		EmployeeTableViewController m_RootController { get; set; }
 		public UIWindow m_Window { get; set; }
 		
 		/// <summary>
@@ -62,7 +62,7 @@ namespace KMSDirectory.iOS
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			m_Window = new UIWindow (UIScreen.MainScreen.Bounds);
-			m_RootController = new EmployeeMngrView ("EmployeeMngrView", null);
+			m_RootController = new EmployeeTableViewController ("EmployeeTableViewController", null);
 			m_NavigationController = new UINavigationController (m_RootController);
 			m_Window.RootViewController = m_NavigationController;
 			
@@ -102,34 +102,49 @@ namespace KMSDirectory.iOS
 				request.ContentType = "application/json";
 				request.Method = "GET";
 				request.Timeout = 600000;
-				
-				using (var response = (HttpWebResponse) request.GetResponse ()) {
-					if (response.StatusCode != HttpStatusCode.OK) {
-						UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-						DisplayError ("Error", "Malformed JSON was found in the request.");
-					} else {
-						using (var reader = new StreamReader(response.GetResponseStream ())) {
-							//JsonValue root = JsonValue.Load (streamReader);
-							//List<Employee> questions = ParseJsonAndLoadQuestions ((JsonObject)root);
-							
-							var content = reader.ReadToEnd ();
-							
-							if (string.IsNullOrWhiteSpace (content)) {
-								Console.Out.WriteLine ("Response contained empty body...");
-							} else {
-								List<Employee> list = JsonConvert.DeserializeObject<List<Employee>> (content);
-								//var deserializer = new DataContract DataContractJsonSerializer(); // Xamarin's api
 
-								m_RootController.m_arrEmployee.Clear ();
+				HttpWebResponse response;
 
-								foreach (var item in list)
-								{
-									m_RootController.m_arrEmployee.Add (item);
-								}
+				try
+				{
+					response = (HttpWebResponse) request.GetResponse ();
+				}
+				catch(SystemException e)
+				{
+					DisplayError ("Error", "No server.");
+					Console.WriteLine(e.Message);
+
+					return;
+				}
+
+				if (response == null)
+					return;
+
+				if (response.StatusCode != HttpStatusCode.OK) {
+					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+					DisplayError ("Error", "Malformed JSON was found in the request.");
+				} else {
+					using (var reader = new StreamReader(response.GetResponseStream ())) {
+						//JsonValue root = JsonValue.Load (streamReader);
+						//List<Employee> questions = ParseJsonAndLoadQuestions ((JsonObject)root);
+						
+						var content = reader.ReadToEnd ();
+						
+						if (string.IsNullOrWhiteSpace (content)) {
+							Console.Out.WriteLine ("Response contained empty body...");
+						} else {
+							List<Employee> list = JsonConvert.DeserializeObject<List<Employee>> (content);
+							//var deserializer = new DataContract DataContractJsonSerializer(); // Xamarin's api
+
+							m_RootController.m_arrEmployee.Clear ();
+
+							foreach (var item in list)
+							{
+								m_RootController.m_arrEmployee.Add (item);
 							}
-
-							UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 						}
+
+						UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 					}
 				}
 
