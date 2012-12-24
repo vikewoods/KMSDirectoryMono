@@ -1,6 +1,6 @@
 using System;
 
-namespace KMSDirectory.iOS
+namespace KMSDirectory.Share
 {
 	public class Employee
 	{
