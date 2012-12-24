@@ -68,7 +68,7 @@ namespace CustomRowView {
 
 		protected void loadData ()
 		{
-			var url = "http://directory.kms-technology.com/RestServiceImpl.svc/json/456";
+			var url = "http://192.168.1.10/RestServiceImpl.svc/json/456";
 			// Now handle the result from the WebClient
 			var request = (HttpWebRequest)WebRequest.Create (url);
 			request.ContentType = "application/json";

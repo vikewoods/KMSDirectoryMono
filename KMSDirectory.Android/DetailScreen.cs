@@ -65,7 +65,20 @@ namespace CustomRowView
 
 			var mobiSms = FindViewById<ImageView> (Resource.Id.mobiphone_chat);
 			var mobiCall = FindViewById<ImageView> (Resource.Id.mobiphone_call);
+			var homeSms = FindViewById<ImageView> (Resource.Id.homephone_chat);
+			var homeCall = FindViewById<ImageView> (Resource.Id.homephone_call);
+			var workSms = FindViewById<ImageView> (Resource.Id.workphone_chat);
+			var workCall = FindViewById<ImageView> (Resource.Id.workphone_call);
+
 			var workEmailSend = FindViewById<ImageView>(Resource.Id.workmail_send);
+			var otherEmailSend = FindViewById<ImageView>(Resource.Id.othermail_send);
+
+			var relaMobiPhoneCall = FindViewById<ImageView>(Resource.Id.relamobiphone_call);
+			var relaMobiPhoneSms = FindViewById<ImageView>(Resource.Id.relamobiphone_chat);
+			var relaHomePhoneCall = FindViewById<ImageView>(Resource.Id.relahomephone_call);
+			var relaHomePhoneSms = FindViewById<ImageView>(Resource.Id.relahomephone_chat);
+			var relaWorkPhoneCall = FindViewById<ImageView>(Resource.Id.relaworkphone_call);
+			var relaWorkPhoneSms = FindViewById<ImageView>(Resource.Id.relaworkphone_chat);
 
 
 			name.Text = firstNameStr + " " + lastNameStr;
@@ -121,28 +134,60 @@ namespace CustomRowView
 			} else {
 				relaWorkPhone.Text = relaWorkPhoneStr;
 			}
-			avatar.SetImageBitmap(GetAvatar(avatarImageStr));
+
+			if (avatarImageStr == "") {
+				avatar.SetImageResource(Resource.Drawable.dafault_avatar);
+			} else {
+				avatar.SetImageBitmap(GetAvatar(avatarImageStr));
+			}
 
 			// Populate the TextView with the data that was added to the intent in FirstActivity 
 			//label.Text = Intent.GetStringExtra("FirstData") ?? "Data not available";
 			mobiSms.Click += (sender, e) => {           
 				//Android.Widget.Toast.MakeText(this, "just test here", Android.Widget.ToastLength.Short).Show();
-				var smsUri = Android.Net.Uri.Parse("smsto:1234567890");
+				var smsUri = Android.Net.Uri.Parse("smsto:" + mobiPhoneStr);
 				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
 				//smsIntent.PutExtra ("sms_body", "hello from Mono for Android");  
 				StartActivity (smsIntent);
 			};
 
 			mobiCall.Click += (sender, e) => {           
-				var uri = Android.Net.Uri.Parse ("tel:1112223333");
+				var uri = Android.Net.Uri.Parse ("tel:" + mobiPhoneStr);
+				var intent = new Intent (Intent.ActionView, uri); 
+				StartActivity (intent);  
+			};
+
+			homeSms.Click += (sender, e) => {           
+				var smsUri = Android.Net.Uri.Parse("smsto:" + homePhoneStr);
+				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+				StartActivity (smsIntent);
+			};
+			
+			homeCall.Click += (sender, e) => {           
+				var uri = Android.Net.Uri.Parse ("tel:" + homePhoneStr);
+				var intent = new Intent (Intent.ActionView, uri); 
+				StartActivity (intent);  
+			};
+
+			workSms.Click += (sender, e) => {           
+				var smsUri = Android.Net.Uri.Parse("smsto:" + workPhoneStr);
+				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+				StartActivity (smsIntent);
+			};
+			
+			workCall.Click += (sender, e) => {           
+				var uri = Android.Net.Uri.Parse ("tel:" + workPhoneStr);
 				var intent = new Intent (Intent.ActionView, uri); 
 				StartActivity (intent);  
 			};
 
 			workEmailSend.Click += (sender, e) => {           
-				//Android.Widget.Toast.MakeText(this, "just test here", Android.Widget.ToastLength.Short).Show();
 
+				
 				var email = new Intent (Android.Content.Intent.ActionSend);
+				email.PutExtra (Android.Content.Intent.ExtraEmail, 
+				                new string[]{workEmailStr} );
+				/*
 				email.PutExtra (Android.Content.Intent.ExtraEmail, 
 				                new string[]{"person1@xamarin.com", "person2@xamrin.com"} );
 				
@@ -153,11 +198,59 @@ namespace CustomRowView
 				
 				email.PutExtra (Android.Content.Intent.ExtraText, 
 				                "Hello from Mono for Android");
-
+				*/
 				//email.SetType ("message/rfc822");
 
 				StartActivity (email); 
 			};
+
+			otherEmailSend.Click += (sender, e) => {           
+				
+				
+				var email = new Intent (Android.Content.Intent.ActionSend);
+				email.PutExtra (Android.Content.Intent.ExtraEmail, 
+				                new string[]{otherEmailStr} );
+				
+				StartActivity (email); 
+			};
+
+
+			relaMobiPhoneSms.Click += (sender, e) => {           
+				var smsUri = Android.Net.Uri.Parse("smsto:" + relaMobiPhoneStr);
+				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+				StartActivity (smsIntent);
+			};
+			
+			relaMobiPhoneCall.Click += (sender, e) => {           
+				var uri = Android.Net.Uri.Parse ("tel:" + relaMobiPhoneStr);
+				var intent = new Intent (Intent.ActionView, uri); 
+				StartActivity (intent);  
+			};
+
+			relaHomePhoneSms.Click += (sender, e) => {           
+				var smsUri = Android.Net.Uri.Parse("smsto:" + relaHomePhoneStr);
+				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+				StartActivity (smsIntent);
+			};
+			
+			relaHomePhoneCall.Click += (sender, e) => {           
+				var uri = Android.Net.Uri.Parse ("tel:" + relaHomePhoneStr);
+				var intent = new Intent (Intent.ActionView, uri); 
+				StartActivity (intent);  
+			};
+
+			relaWorkPhoneSms.Click += (sender, e) => {           
+				var smsUri = Android.Net.Uri.Parse("smsto:" + relaWorkPhoneStr);
+				var smsIntent = new Intent (Intent.ActionSendto, smsUri);
+				StartActivity (smsIntent);
+			};
+			
+			relaWorkPhoneCall.Click += (sender, e) => {           
+				var uri = Android.Net.Uri.Parse ("tel:" + relaWorkPhoneStr);
+				var intent = new Intent (Intent.ActionView, uri); 
+				StartActivity (intent);  
+			};
+
 		}
 
 		Bitmap GetAvatar (String avatar)

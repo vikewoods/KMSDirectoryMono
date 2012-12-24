@@ -20,6 +20,7 @@
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -67,6 +68,7 @@
     <AndroidResource Include="Resources\Drawable\btn_call.png" />
     <AndroidResource Include="Resources\Drawable\btn_chat.png" />
     <AndroidResource Include="Resources\Drawable\btn_mail.png" />
+    <AndroidResource Include="Resources\Drawable\dafault_avatar.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\Layout\HomeScreen.axml">
