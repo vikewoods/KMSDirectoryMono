@@ -80,7 +80,7 @@ namespace KMSDirectory.iOS {
 				m_Controller = controller;
 				
 				// Listen for changes to the Apps collection so the TableView can be updated
-				m_Controller.m_arrEmployee.CollectionChanged += HandleAppsCollectionChanged;
+				m_Controller.m_arrEmployee.CollectionChanged += HandleEmployeeCollectionChanged;
 
 				// Initialise DownloadTask with an empty and complete task
 				m_DownloadTask = Task.Factory.StartNew(() => { });
@@ -97,7 +97,7 @@ namespace KMSDirectory.iOS {
 				};
 			}
 
-			void HandleAppsCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+			void HandleEmployeeCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
 			{
 				// Whenever the Items change, reload the data.
 				m_Controller.TableView.ReloadData();
@@ -156,6 +156,14 @@ namespace KMSDirectory.iOS {
 				/**/
 
 				return cell;
+			}
+
+			public override void RowSelected (UITableView tableView, MonoTouch.Foundation.NSIndexPath indexPath)
+			{
+				var employee = m_Controller.m_arrEmployee [indexPath.Row];
+
+				EmployeeDetailViewController details = new EmployeeDetailViewController(employee);
+				m_Controller.NavigationController.PushViewController(details, true);
 			}
 
 			UIImage GetAvatar (Employee employee)

@@ -66,6 +66,20 @@ namespace KMSDirectory.iOS
 
 			return "";
 		}
+
+		public string getRelaPhone()
+		{
+			if (relaMobiPhone.Length > 0)
+				return relaMobiPhone;
+			
+			if (relaHomePhone.Length > 0)
+				return relaHomePhone;
+			
+			if (relaWorkPhone.Length > 0)
+				return relaWorkPhone;
+			
+			return "";
+		}
 	}
 }
 

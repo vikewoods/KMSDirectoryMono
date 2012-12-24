@@ -83,10 +83,15 @@
     <Compile Include="EmployeeTableViewCell.designer.cs">
       <DependentUpon>EmployeeTableViewCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeDetailViewController.cs" />
+    <Compile Include="EmployeeDetailViewController.designer.cs">
+      <DependentUpon>EmployeeDetailViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="EmployeeTableViewController.xib" />
     <InterfaceDefinition Include="EmployeeTableViewCell.xib" />
+    <InterfaceDefinition Include="EmployeeDetailViewController.xib" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
