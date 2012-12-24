@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/CustomSelector"
+    android:padding="8dp">
+    <LinearLayout
+        android:id="@+id/Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="100dip">
+        <TextView
+            android:id="@+id/employee_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:textColor="#FF7F3300"
+            android:textSize="20dip" />
+        <TextView
+            android:id="@+id/employee_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="title"
+            android:textColor="#FF267F00"
+            android:textSize="14dip" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/icon"
+        android:padding="5dp" />
+    <View
+        android:id="@+id/separator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/avatar"
+        android:layout_centerVertical="true"
+        android:background="#000000" />
+    <TextView
+        android:id="@+id/phone_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/separator"
+        android:text="Phone"
+        android:textColor="#000000"
+        android:textSize="14dip" />
+    <RelativeLayout
+        android:id="@+id/mobiphone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone_title">
+        <TextView
+            android:id="@+id/mobiphone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/mobiphone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_call"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/mobiphone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_chat"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/mobiphone_call" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/homephone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mobiphone_layout">
+        <TextView
+            android:id="@+id/homephone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/homephone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_call"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/homephone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_chat"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/homephone_call" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/workphone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/homephone_layout">
+        <TextView
+            android:id="@+id/workphone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/workphone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_call"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/workphone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_chat"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/workphone_call" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/mail_separator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/workphone_layout"
+        android:layout_centerVertical="true"
+        android:background="#000000" />
+    <TextView
+        android:id="@+id/mail_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mail_separator"
+        android:text="Mail"
+        android:textColor="#000000"
+        android:textSize="14dip" />
+    <RelativeLayout
+        android:id="@+id/workmail_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mail_title">
+        <TextView
+            android:id="@+id/workmail_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="test@ksm-technology.com"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/workmail_send"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_mail"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/othermail_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/workmail_layout">
+        <TextView
+            android:id="@+id/othermail_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="test@ksm-technology.com"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/othermail_send"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:src="@drawable/btn_mail"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/emergency_separator"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_below="@id/othermail_layout"
+        android:layout_centerVertical="true"
+        android:background="#000000" />
+    <TextView
+        android:id="@+id/emergency_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emergency_separator"
+        android:text="EMERGENCY INFO"
+        android:textColor="#000000"
+        android:textSize="14dip" />
+    <TextView
+        android:id="@+id/rela_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/emergency_title"
+        android:text="Name: Nguyen Van A"
+        android:textColor="#000000"
+        android:textSize="14dip" />
+    <TextView
+        android:id="@+id/relationship"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rela_name"
+        android:text="Relationship: Father"
+        android:textColor="#000000"
+        android:textSize="14dip" />
+    <RelativeLayout
+        android:id="@+id/relamobiphone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relationship">
+        <TextView
+            android:id="@+id/relamobiphone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/relamobiphone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_call"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/relamobiphone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_chat"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/relamobiphone_call" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relahomephone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relamobiphone_layout">
+        <TextView
+            android:id="@+id/relahomephone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/relahomephone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_call"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/relahomephone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_chat"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/relahomephone_call" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/relaworkphone_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relahomephone_layout">
+        <TextView
+            android:id="@+id/relaworkphone_val"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="09483642283"
+            android:textColor="#000000"
+            android:textSize="14dip" />
+        <ImageView
+            android:id="@+id/relaworkphone_call"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_call"
+            android:layout_alignParentRight="true" />
+        <ImageView
+            android:id="@+id/relaworkphone_chat"
+            android:layout_width="33dp"
+            android:layout_height="33dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/btn_chat"
+            android:layout_marginRight="20dip"
+            android:layout_toLeftOf="@id/relaworkphone_call" />
+    </RelativeLayout>
+</RelativeLayout>
